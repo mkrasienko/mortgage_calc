@@ -56,11 +56,19 @@ MP = (p)*(r1_pow_r/r1_pow_minus_1)
 
 
 #Get start date
-input_date = input("Enter first payment date (YYYY-MM-DD): ")
-year, month, day = map(int, input_date.split('-'))
-start_date = datetime.date(datetime(year, month, day))
-#Last Payment
-last_pay_day = (start_date + relativedelta(months=+nm))
+try:
+    input_date = input("Enter first payment date (YYYY-MM-DD): ")
+    year, month, day = map(int, input_date.split('-'))
+    start_date = datetime.date(datetime(year, month, day))
+    #Last Payment
+    last_pay_day = (start_date + relativedelta(months=+nm))
+except ValueError:
+    print("Please enter a valid number.")
+    input_date = input("Enter first payment date (YYYY-MM-DD): ")
+    year, month, day = map(int, input_date.split('-'))
+    start_date = datetime.date(datetime(year, month, day))
+    #Last Payment
+    last_pay_day = (start_date + relativedelta(months=+nm))
 
 print("------------------------------------------------")
 print(f"Your monthly payment will be: ${round(MP, 2)}")
